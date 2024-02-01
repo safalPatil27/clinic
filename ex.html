@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+    
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+    
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
+<body>
+    <style>
+        
+      
+      
+      .img-comp-container {
+       
+        height: 200px; /*should be the same height as the images*/
+       
+      }
+      
+      .img-comp-img {
+        position: absolute;
+        overflow:hidden;
+        
+      }
+      
+     
+      
+      .img-comp-slider {
+        position: absolute;
+        z-index:6;
+        cursor: ew-resize;
+        /*set the appearance of the slider:*/
+        width: 40px;
+        height: 40px;
+        background-color: #0e1922;
+        opacity: 0.7;
+        border-radius: 50%;
+      }
+      /* card */
+      #demo{
+        border: none;
+
+        
+      }
+
+      #img{
+        border-radius: 20px;
+        border: 2px solid black;
+      }
+      /* card end */
+
+      /* card 2 */
+      
+
+
+
+
+
+.card {
+ margin-bottom: 30px;
+ 
+}
+
+
+
+
+    </style>
+    <script>
+        function initComparisons() {
+  var x, i;
+  /*find all elements with an "overlay" class:*/
+  x = document.getElementsByClassName("img-comp-overlay");
+  for (i = 0; i < x.length; i++) {
+    /*once for each "overlay" element:
+    pass the "overlay" element as a parameter when executing the compareImages function:*/
+    compareImages(x[i]);
+  }
+  function compareImages(img) {
+    var slider, img, clicked = 0, w, h;
+    /*get the width and height of the img element*/
+    w = img.offsetWidth;
+    h = img.offsetHeight;
+    /*set the width of the img element to 50%:*/
+    img.style.width = (w / 2) + "px";
+    /*create slider:*/
+    slider = document.createElement("DIV");
+    slider.setAttribute("class", "img-comp-slider");
+    /*insert slider*/
+    img.parentElement.insertBefore(slider, img);
+    /*position the slider in the middle:*/
+    slider.style.top = (h / 2) - (slider.offsetHeight / 2) + "px";
+    slider.style.left = (w / 2) - (slider.offsetWidth / 2) + "px";
+    /*execute a function when the mouse button is pressed:*/
+    slider.addEventListener("mousedown", slideReady);
+    /*and another function when the mouse button is released:*/
+    window.addEventListener("mouseup", slideFinish);
+    /*or touched (for touch screens:*/
+    slider.addEventListener("touchstart", slideReady);
+    /*and released (for touch screens:*/
+    window.addEventListener("touchend", slideFinish);
+    function slideReady(e) {
+      /*prevent any other actions that may occur when moving over the image:*/
+      e.preventDefault();
+      /*the slider is now clicked and ready to move:*/
+      clicked = 1;
+      /*execute a function when the slider is moved:*/
+      window.addEventListener("mousemove", slideMove);
+      window.addEventListener("touchmove", slideMove);
+    }
+    function slideFinish() {
+      /*the slider is no longer clicked:*/
+      clicked = 0;
+    }
+    function slideMove(e) {
+      var pos;
+      /*if the slider is no longer clicked, exit this function:*/
+      if (clicked == 0) return false;
+      /*get the cursor's x position:*/
+      pos = getCursorPos(e)
+      /*prevent the slider from being positioned outside the image:*/
+      if (pos < 0) pos = 0;
+      if (pos > w) pos = w;
+      /*execute a function that will resize the overlay image according to the cursor:*/
+      slide(pos);
+    }
+    function getCursorPos(e) {
+      var a, x = 0;
+      e = (e.changedTouches) ? e.changedTouches[0] : e;
+      /*get the x positions of the image:*/
+      a = img.getBoundingClientRect();
+      /*calculate the cursor's x coordinate, relative to the image:*/
+      x = e.pageX - a.left;
+      /*consider any page scrolling:*/
+      x = x - window.pageXOffset;
+      return x;
+    }
+    function slide(x) {
+      /*resize the image:*/
+      img.style.width = x + "px";
+      /*position the slider:*/
+      slider.style.left = img.offsetWidth - (slider.offsetWidth / 2) + "px";
+    }
+  }
+}
+    </script>
+
+<div class="container">
+    <div class="row justify-content-center mb-5 pb-5">
+    <div class="col-md-7 text-center heading-section ftco-animate">
+      <h2 class="mb-2 d-flex">Pre-Implementation and Post-Execution Disparities
+
+        
+      </h2>
+      <p> Contrasts in Processes and Outcomes Pre- and Post-Implementation.</p>
+    </div>
+  </div>
+  <div class="row" >
+    <div class="col-sm-4 d-flex align-self-stretch ftco-animate">
+      <div class="media block-6 services d-block text-center">
+        <div>
+        </div>
+        <div class="img-comp-container  card" id="demo">
+          <div class="img-comp-img ">
+            <img src="images/person_1.jpg" width="340" height="240" id="img">
+          </div>
+          <div class="img-comp-img img-comp-overlay">
+            <img src="images/person_2.jpg" width="340" height="240" id="img">
+          </div>
+        </div>
+       
+      </div>      
+    </div>
+    <div class="col-sm-4 d-flex align-self-stretch ftco-animate">
+      <div class="media block-6 services d-block text-center">
+        <div >
+        </div>
+         
+            <div class="img-comp-container card" id="demo">
+              <div class="img-comp-img">
+                <img src="images/person_1.jpg" width="340" height="240" id="img">
+              </div>
+              <div class="img-comp-img img-comp-overlay">
+                <img src="images/person_2.jpg" width="340" height="240" id="img">
+              </div>
+          
+          </div>
+      </div>    
+    </div>
+    <div class="col-sm-4 d-flex align-self-stretch ftco-animate">
+      <div class="media block-6 services d-block text-center">
+        <div >
+        </div>
+        <div class="img-comp-container card" id="demo">
+          <div class="img-comp-img">
+            <img src="images/person_1.jpg" width="340" height="240" id="img">
+          </div>
+          <div class="img-comp-img img-comp-overlay">
+            <img src="images/person_2.jpg" width="340" height="240" id="img">
+          </div>
+        </div>
+      </div>    
+    </div>
+   
+</div>
+
+<!--  -->
+
+<!--  -->
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+
+<script>
+    
+    /*Execute a function that will execute an image compare function for each element with the img-comp-overlay class:*/
+    initComparisons();
+    
+      </script>
+
+      
+</body>
+</html>
